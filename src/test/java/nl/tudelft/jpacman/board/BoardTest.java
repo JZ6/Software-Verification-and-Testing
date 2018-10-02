@@ -75,4 +75,68 @@ class BoardTest {
     void testSquareAt(int x, int y) {
         assertThat(board.squareAt(x, y)).isEqualTo(grid[x][y]);
     }
+
+    /**
+     * Verify invalid WithinBorders parameters using Boundary Value Testing.
+     * @param x Horizontal coordinate of relevant cell.
+     * @param y Vertical coordinate of relevant cell.
+     */
+    @ParameterizedTest
+    @CsvSource({
+            "-1, -1",   //Both parameters invalid.
+            "-1, 99",
+            "99, -1",
+            "99, 99",
+			
+			"2, 3",		//X & Y on Maximum
+
+            "-1, 1",    //One parameter invalid.
+            "99, 1",
+            "1, 99",
+            "1, -1"
+    })
+    void verifyWithinBordersFalse(int x, int y) {
+        assertThat(board.withinBorders(x, y)).isEqualTo(false);
+    }
+
+     /**
+     * Verify valid WithinBorders parameters using Boundary Value Testing.
+     * @param x Horizontal coordinate of relevant cell.
+     * @param y Vertical coordinate of relevant cell.
+     */
+    @ParameterizedTest
+    @CsvSource({
+            "0, 0",
+            "1, 0",
+            "0, 2",
+            "1, 2"
+    })
+    void verifyWithinBordersTrue(int x, int y) {
+        assertThat(board.withinBorders(x, y)).isEqualTo(true);
+    }
+
+    /**
+     * Verifies withinBorders assertion error when square not withinBorders.
+     */
+    @Test
+    void verifySquareAtWithinBorders() {
+        assertThrows(AssertionError.class, () -> {
+            board.squareAt(-1, -1);
+        });
+    }
+
+    /**
+     * Verifies invariant assertion error when some grid squares are null.
+     */
+    private Board boardWithNullSquares;
+    @Test
+    void verifyGridSquaresNotNull() {
+        final Square[][] gridWithNullSquares = {
+            { mock(Square.class), null, mock(Square.class) },
+            { mock(Square.class), mock(Square.class), mock(Square.class) },
+        };
+        assertThrows(AssertionError.class, () -> {
+            boardWithNullSquares = new Board(gridWithNullSquares);
+        });
+    }
 }
