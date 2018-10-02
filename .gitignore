@@ -13,3 +13,5 @@ target/
 .idea/
 *.iml
 /bin
+.vscode/launch.test.json
+.vscode/settings.json

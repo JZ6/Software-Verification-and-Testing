@@ -7,6 +7,7 @@ import org.junit.jupiter.params.provider.CsvSource;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.mockito.Mockito.mock;
 
+import static org.junit.jupiter.api.Assertions.assertThrows;
 /**
  * Test various aspects of board.
  *
@@ -16,6 +17,27 @@ class BoardTest {
 
     private static final int MAX_WIDTH = 2;
     private static final int MAX_HEIGHT = 3;
+
+    /**
+     * Verify assertThrows and exceptions is working.
+     * From https://junit.org/junit5/docs/current/user-guide/#writing-tests-assertions
+     */
+    @Test
+    void exceptionTesting() {
+        assertThrows(IllegalArgumentException.class, () -> {
+            throw new IllegalArgumentException("a message");
+        });
+    }
+
+    /**
+     * Verifies grid not null.
+     */
+    @Test
+    void verifyGridNotNull() {
+        assertThrows(AssertionError.class, () -> {
+            new Board(null);
+        });
+    }
 
     private final Square[][] grid = {
         { mock(Square.class), mock(Square.class), mock(Square.class) },

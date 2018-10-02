@@ -310,7 +310,7 @@
 				</dependencies>
 				<configuration>
 					<trimStackTrace>false</trimStackTrace>
-					<enableAssertions>false</enableAssertions>
+					<enableAssertions>true</enableAssertions>
 				</configuration>
 			</plugin>
 
