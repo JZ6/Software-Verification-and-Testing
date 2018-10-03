@@ -91,6 +91,34 @@ public abstract class Game implements LevelObserver {
             getLevel().move(player, direction);
         }
     }
+    
+    /**
+     * Freeze/Unfreeze all NPCs when game is active.
+     */
+    public void freezeUnfreeze() {
+        if (isInProgress()) {
+            // execute freeze/unfreeze.
+            getLevel().freezeUnfreeze();
+        }
+    }
+    
+    /**
+     * Returns whether the level is freezed.
+     *
+     * @return <code>true</code> iff this level is freezed.
+     */
+    public boolean isFreezed() {
+        return getLevel().isFreezed();
+    }
+    
+    /**
+     * Returns whether NPC's are stopped or not.
+     *
+     * @return <code>true</code> iff NPC's are stopped.
+     */
+    public boolean areNpcsStopped() {
+    	return getLevel().areNpcsStopped();
+    }
 
     @Override
     public void levelWon() {

@@ -52,6 +52,12 @@ public class Level {
      * and NPCs can move.
      */
     private boolean inProgress;
+    
+    /**
+     * <code>true</code> iff this level is currently freezed, i.e. NPCs cannot
+     * move.
+     */
+    private boolean isFreezed;
 
     /**
      * The squares from which players can start this game.
@@ -98,6 +104,7 @@ public class Level {
 
         this.board = board;
         this.inProgress = false;
+        this.isFreezed = false;	//Added for freeze/unfreeze implementation
         this.npcs = new HashMap<>();
         for (Ghost ghost : ghosts) {
             npcs.put(ghost, null);
@@ -203,7 +210,9 @@ public class Level {
             if (isInProgress()) {
                 return;
             }
-            startNPCs();
+            if (!isFreezed) {	//So that it does not interfere freeze/unfreeze
+            	startNPCs();
+            }
             inProgress = true;
             updateObservers();
         }
@@ -218,7 +227,9 @@ public class Level {
             if (!isInProgress()) {
                 return;
             }
-            stopNPCs();
+            if (!isFreezed) {	//So that it does not interfere freeze/unfreeze
+            	stopNPCs();
+            }
             inProgress = false;
         }
     }
@@ -247,6 +258,47 @@ public class Level {
             assert schedule != null;
             schedule.shutdownNow();
         }
+    }
+    
+    /**
+     * Freeze/Unfreeze all NPCs.
+     */
+    public void freezeUnfreeze() {
+    	if (isInProgress()) {
+    		if (!isFreezed) {
+        		stopNPCs();
+        		isFreezed = true;
+            }
+        	else {
+        		startNPCs();
+        		isFreezed = false;
+        	}
+    	}
+    }
+    
+    /**
+     * Returns whether this level is freezed.
+     *
+     * @return <code>true</code> iff this level is freezed.
+     */
+    public boolean isFreezed() {
+        return isFreezed;
+    }
+    
+    /**
+     * Returns whether NPC's are stopped or not.
+     *
+     * @return <code>true</code> iff NPC's are stopped.
+     */
+    public boolean areNpcsStopped() {
+    	for (Entry<Ghost, ScheduledExecutorService> entry : npcs.entrySet()) {
+            ScheduledExecutorService schedule = entry.getValue();
+            assert schedule != null;
+            if (!schedule.isShutdown()) {
+            	return false;
+            }
+        }
+    	return true;
     }
 
     /**
