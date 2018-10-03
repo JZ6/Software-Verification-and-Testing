@@ -9,18 +9,25 @@ import static org.mockito.Mockito.when;
 import nl.tudelft.jpacman.board.Board;
 import nl.tudelft.jpacman.board.Square;
 import nl.tudelft.jpacman.npc.Ghost;
+import nl.tudelft.jpacman.sprite.EmptySprite;
+import nl.tudelft.jpacman.level.Pellet;
+import nl.tudelft.jpacman.level.PlayerCollisions;
+import nl.tudelft.jpacman.board.Unit;
 
 import com.google.common.collect.Lists;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import java.util.Random;
+
 /**
  * Tests various aspects of level.
  *
- * @author Jeroen Roosen 
+ * @author Jeroen Roosen
  */
-// The four suppress warnings ignore the same rule, which results in 4 same string literals
-@SuppressWarnings({"PMD.AvoidDuplicateLiterals", "PMD.TooManyStaticImports"})
+// The four suppress warnings ignore the same rule, which results in 4 same
+// string literals
+@SuppressWarnings({ "PMD.AvoidDuplicateLiterals", "PMD.TooManyStaticImports" })
 class LevelTest {
 
     /**
@@ -54,14 +61,12 @@ class LevelTest {
     private final CollisionMap collisions = mock(CollisionMap.class);
 
     /**
-     * Sets up the level with the default board, a single NPC and a starting
-     * square.
+     * Sets up the level with the default board, a single NPC and a starting square.
      */
     @BeforeEach
     void setUp() {
         final long defaultInterval = 100L;
-        level = new Level(board, Lists.newArrayList(ghost), Lists.newArrayList(
-            square1, square2), collisions);
+        level = new Level(board, Lists.newArrayList(ghost), Lists.newArrayList(square1, square2), collisions);
         when(ghost.getInterval()).thenReturn(defaultInterval);
     }
 
@@ -102,8 +107,7 @@ class LevelTest {
     }
 
     /**
-     * Verifies registering a player puts the player on the correct starting
-     * square.
+     * Verifies registering a player puts the player on the correct starting square.
      */
     @Test
     @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
@@ -126,8 +130,8 @@ class LevelTest {
     }
 
     /**
-     * Verifies registering a second player puts that player on the correct
-     * starting square.
+     * Verifies registering a second player puts that player on the correct starting
+     * square.
      */
     @Test
     @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
@@ -140,8 +144,8 @@ class LevelTest {
     }
 
     /**
-     * Verifies registering a third player puts the player on the correct
-     * starting square.
+     * Verifies registering a third player puts the player on the correct starting
+     * square.
      */
     @Test
     @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
@@ -153,5 +157,39 @@ class LevelTest {
         level.registerPlayer(p2);
         level.registerPlayer(p3);
         verify(p3).occupy(square1);
+    }
+
+    private final PlayerCollisions playerCollisions = new PlayerCollisions();
+
+    private final Player player = mock(Player.class);
+    private final EmptySprite pelletSprite = new EmptySprite();
+    private final Pellet pellet = new Pellet(3, pelletSprite);
+
+    private final Unit[] colliderUnits = {ghost, player, pellet, null};
+
+    /**
+     * Test random units colliding and their results.
+     */
+    @Test
+    @SuppressWarnings("PMD.JUnitTestsShouldIncludeAssert")
+    void testRandomUnitsColliding() {
+        int numberTests = 6;
+        int i = 0;
+        while (i < numberTests) {
+            i++;
+            Unit randomMover = colliderUnits[new Random().nextInt(colliderUnits.length)];
+            Unit randomCollidedOn = colliderUnits[new Random().nextInt(colliderUnits.length)];
+
+            playerCollisions.collide(randomMover, randomCollidedOn);
+
+            if (randomMover instanceof Player != randomCollidedOn instanceof Player) { // XOR, player can't collide with
+                                                                                       // player.
+                if (randomMover instanceof Ghost || randomCollidedOn instanceof Ghost) {
+                    assertThat(player.isAlive()).isFalse();
+                } else if (randomMover instanceof Pellet || randomCollidedOn instanceof Pellet) {
+                    assertThat(pellet.hasSquare()).isFalse();
+                }
+            }
+        }
     }
 }
