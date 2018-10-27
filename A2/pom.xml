@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" 
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 
 	<groupId>nl.tudelft.jpacman</groupId>
 	<artifactId>jpacman-framework</artifactId>
@@ -41,17 +41,17 @@
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
 
-        <junit.jupiter.version>5.1.1</junit.jupiter.version>
-        <junit.platform.version>1.1.1</junit.platform.version>
+		<junit.jupiter.version>5.1.1</junit.jupiter.version>
+		<junit.platform.version>1.1.1</junit.platform.version>
 
-        <junit.version>4.12</junit.version>
-        <junit.vintage.version>5.1.1</junit.vintage.version>
+		<junit.version>4.12</junit.version>
+		<junit.vintage.version>5.1.1</junit.vintage.version>
 
-        <cucumber.version>1.2.5</cucumber.version>
-        <assertj.version>3.9.1</assertj.version>
-        <mockito.version>2.18.0</mockito.version>
+		<cucumber.version>1.2.5</cucumber.version>
+		<assertj.version>3.9.1</assertj.version>
+		<mockito.version>2.18.0</mockito.version>
 
-        <assembly.plugin.version>3.1.0</assembly.plugin.version>
+		<assembly.plugin.version>3.1.0</assembly.plugin.version>
 		<checkstyle.plugin.version>2.17</checkstyle.plugin.version>
 		<checkstyle.version>8.9</checkstyle.version>
 		<compiler.plugin.version>3.7.0</compiler.plugin.version>
@@ -75,12 +75,12 @@
 			<artifactId>guava</artifactId>
 			<version>${guava.plugin.version}</version>
 		</dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId>
-            <version>${junit.jupiter.version}</version>
-            <scope>test</scope>
-        </dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>${junit.jupiter.version}</version>
+			<scope>test</scope>
+		</dependency>
 		<dependency>
 			<groupId>org.junit.jupiter</groupId>
 			<artifactId>junit-jupiter-engine</artifactId>
@@ -113,12 +113,12 @@
 		</dependency>
 
 		<dependency>
-            <groupId>junit</groupId>
-            <artifactId>junit</artifactId>
-            <version>${junit.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
+			<groupId>junit</groupId>
+			<artifactId>junit</artifactId>
+			<version>${junit.version}</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
 			<groupId>org.mockito</groupId>
 			<artifactId>mockito-core</artifactId>
 			<version>${mockito.version}</version>
@@ -153,27 +153,49 @@
 
 	<build>
 		<plugins>
+		
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.4.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>0.7</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<verbose>true</verbose>
+					<targetClasses>
+						<param>nl.tudelft.jpacman.Launcher</param>
+					</targetClasses>
+					<targetTests>
+						<param>nl.tudelft.jpacman.LauncherSmokeTest</param>
+					</targetTests>
+				</configuration>
+			</plugin>
 
-		    <plugin>
-		        <groupId>org.apache.maven.plugins</groupId>
-		        <artifactId>maven-enforcer-plugin</artifactId>
-		        <version>3.0.0-M1</version>
-		        <executions>
-		            <execution>
-		                <id>enforce-maven</id>
-			            <goals>
-   			                <goal>enforce</goal>
-			            </goals>
-			            <configuration>
-			                <rules>
-			                    <requireMavenVersion>
-			                        <version>3.1.1</version>
-			                    </requireMavenVersion>
-			                </rules>    
-			            </configuration>
-		            </execution>
-		        </executions>
-		    </plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-enforcer-plugin</artifactId>
+				<version>3.0.0-M1</version>
+				<executions>
+					<execution>
+						<id>enforce-maven</id>
+						<goals>
+							<goal>enforce</goal>
+						</goals>
+						<configuration>
+							<rules>
+								<requireMavenVersion>
+									<version>3.1.1</version>
+								</requireMavenVersion>
+							</rules>
+						</configuration>
+					</execution>
+				</executions>
+			</plugin>
 
 			<plugin>
 				<!-- This plugin will set properties values using dependency information -->
@@ -222,9 +244,9 @@
 				<artifactId>maven-jar-plugin</artifactId>
 				<version>${jar.plugin.version}</version>
 				<configuration>
-                    <archive>
-                        <manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
-                    </archive>
+					<archive>
+						<manifestFile>${project.build.outputDirectory}/META-INF/MANIFEST.MF</manifestFile>
+					</archive>
 				</configuration>
 				<executions>
 					<execution>
@@ -277,9 +299,9 @@
 			</plugin>
 
 			<plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>${spotbugs.plugin.version}</version>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>${spotbugs.plugin.version}</version>
 				<configuration>
 					<includeTests>true</includeTests>
 					<failOnError>true</failOnError>
@@ -339,18 +361,18 @@
 						</goals>
 						<configuration>
 							<haltOnFailure>false</haltOnFailure>
-			  				<rules>
+							<rules>
 								<rule>
-				  					<element>BUNDLE</element>
-				 					<limits>
-					 					<limit>
-					  						<counter>LINE</counter>
-					  						<value>COVEREDRATIO</value>
-					  						<minimum>0.60</minimum>
+									<element>BUNDLE</element>
+									<limits>
+										<limit>
+											<counter>LINE</counter>
+											<value>COVEREDRATIO</value>
+											<minimum>0.60</minimum>
 										</limit>
-				  					</limits>
+									</limits>
 								</rule>
-			  				</rules>
+							</rules>
 						</configuration>
 					</execution>
 				</executions>
@@ -367,7 +389,7 @@
 							<goal>shade</goal>
 						</goals>
 						<configuration>
-						<createDependencyReducedPom>false</createDependencyReducedPom>
+							<createDependencyReducedPom>false</createDependencyReducedPom>
 						</configuration>
 					</execution>
 				</executions>
@@ -416,7 +438,7 @@
 				<version>${jacoco.plugin.version}</version>
 			</plugin>
 
-			<plugin> <!-- JUnit report -->
+			<plugin>				<!-- JUnit report -->
 				<groupId>org.apache.maven.plugins</groupId>
 				<artifactId>maven-surefire-report-plugin</artifactId>
 				<version>${surefire.plugin.version}</version>
@@ -447,10 +469,10 @@
 			</plugin>
 
 			<plugin>
-                <groupId>com.github.spotbugs</groupId>
-                <artifactId>spotbugs-maven-plugin</artifactId>
-                <version>${spotbugs.plugin.version}</version>
-                <configuration>
+				<groupId>com.github.spotbugs</groupId>
+				<artifactId>spotbugs-maven-plugin</artifactId>
+				<version>${spotbugs.plugin.version}</version>
+				<configuration>
 					<xmlOutput>true</xmlOutput>
 					<includeTests>true</includeTests>
 					<!--<onlyAnalyze>nl.tudelft.jpacman.*</onlyAnalyze>-->
