@@ -372,6 +372,29 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.4.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>0.7</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<verbose>true</verbose>
+					<targetClasses>
+						<param>nl.tudelft.jpacman.Launcher</param>
+						</targetClasses>
+						<targetTests>
+						<param>nl.tudelft.jpacman.LauncherSmokeTest</param>
+					</targetTests>
+				</configuration>
+			</plugin>
+			
 		</plugins>
 	</build>
 
