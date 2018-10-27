@@ -1,0 +1,15 @@
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/board/BoardFactoryTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/e2e/framework/startup/StartupSteps.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/integration/StartupSystemTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/LauncherSmokeTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/board/SquareTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/freezeUnfreezeTest/blackBoxTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/board/BasicUnit.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/board/OccupantTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/e2e/framework/startup/StartupTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/freezeUnfreezeTest/whiteBoxTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/level/LevelTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/board/BoardTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/board/BasicSquare.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/npc/ghost/NavigationTest.java
+/Users/tongshen/Documents/GitHub/JPACMAN/src/test/java/nl/tudelft/jpacman/sprite/SpriteTest.java
