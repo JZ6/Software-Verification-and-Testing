@@ -1,0 +1,10 @@
+classpath = bin
+sourcepath = src
+
+target = simple.Branches
+symbolic.method = simple.Branches.branch(sym#sym)
+symbolic.minint=-100
+symbolic.maxint=100
+
+vm.storage.class=nil
+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
