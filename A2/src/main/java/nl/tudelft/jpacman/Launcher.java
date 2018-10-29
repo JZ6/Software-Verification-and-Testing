@@ -18,6 +18,7 @@ import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.Action;
 import nl.tudelft.jpacman.ui.PacManUI;
 import nl.tudelft.jpacman.ui.PacManUiBuilder;
+import nl.tudelft.jpacman.squareFree.SquareFree;
 
 /**
  * Creates and launches the JPacMan UI.
@@ -153,9 +154,20 @@ public class Launcher {
         builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))
                 .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
                 .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
-                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
+                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST))
+                .addKey(KeyEvent.VK_SPACE, freezeUnfreeze());	//Add freeze/unfreeze key
     }
 
+    /**
+     * Adds freeze/unfreeze key and function
+     */
+    private Action freezeUnfreeze() {
+        return () -> {
+            assert game != null;
+            getGame().freezeUnfreeze();
+        };
+    }
+    
     private Action moveTowardsDirection(Direction direction) {
         return () -> {
             assert game != null;
@@ -202,6 +214,11 @@ public class Launcher {
      *             When a resource could not be read.
      */
     public static void main(String[] args) throws IOException {
-        new Launcher().launch();
+    	if (args.length == 1 && args[0].equals("-squareFree")) {
+    		SquareFree.startSquareFree();
+    	}
+    	else {
+    		new Launcher().launch();
+    	}
     }
 }
