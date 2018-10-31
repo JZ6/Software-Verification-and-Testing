@@ -1,5 +1,7 @@
 package nl.tudelft.jpacman.board;
 
+import nl.tudelft.jpacman.board.Square;
+import nl.tudelft.jpacman.sprite.Sprite;
 
 /**
  * A top-down view of a matrix of {@link Square}s.
@@ -92,9 +94,42 @@ public class Board {
         return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
     }
 
+    private static final class TestSquare extends Square {
+
+        /**
+         * The background for this square.
+         */
+        private final int background;
+
+        /**
+         * Creates a new wall square.
+         *
+         * @param sprite
+         *            The background for the square.
+         */
+        TestSquare() {
+            this.background = 0;
+        }
+
+        @Override
+        public boolean isAccessibleTo(Unit unit) {
+            return false;
+        }
+
+        @Override
+        public Sprite getSprite() {
+            return null;
+        }
+    }
+
     public static void main (String[] args) {
-        Square[][] s = new Square[6][6];;
-        Board b = new Board(s);
-        b.withinBorders(1, 3);
-}
+
+        Square[][] grid = {
+            { new TestSquare(), new TestSquare(), new TestSquare() },
+            { new TestSquare(), new TestSquare(), new TestSquare() },
+        };
+        
+        Board b = new Board(grid);
+        b.withinBorders(1, 1);
+    }
 }
