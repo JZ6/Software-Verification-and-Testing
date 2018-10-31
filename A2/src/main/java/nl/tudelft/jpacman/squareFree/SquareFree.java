@@ -11,7 +11,7 @@ import java.util.Scanner;
  */
 public class SquareFree {
 
-    static void main(String[]) {
+    public static void main(String[] args) {
         return;
     }
 
