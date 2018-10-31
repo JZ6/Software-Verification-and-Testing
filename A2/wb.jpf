@@ -1,0 +1,20 @@
+target=nl.tudelft.jpacman.board.Board
+classpath=target/classes
+sourcepath=src/main/java
+
+symbolic.method = nl.tudelft.jpacman.board.Board.withinBorders(sym#sym)
+
+symbolic.min_int = -10
+symbolic.max_int = 10
+
+# listener to print information (PCs, test cases) about symbolic run
+
+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
+
+# no state matching
+
+vm.storage.class=nil
+
+# instruct jpf not to stop at first error
+
+search.multiple_errors=true
