@@ -60,11 +60,8 @@ public class SquareFree {
      *            The integer n
      */
     public boolean isSquareFree(int myInt) {
-    	int n = myInt;
-    	int squared;
-
     	// Non-positive integers are not squarefree
-    	if (n <= 0)
+    	if (myInt <= 0)
     	{
     		return false;
     	}
@@ -76,19 +73,27 @@ public class SquareFree {
     	// make up integer m must also divide integer n.
     	
     	// Start with the smallest prime which is 2
-        for (int i = 2; i < n; i++)
+        for (int i = 2; i < myInt; i++)
         {
-            // See if i is a factor
-            if (n % i == 0)
-            {
-                squared = i * i;
-                
-                // If it divides again, it must not be squarefree
-                if (n % squared == 0)
-                {
-                	return false;
-                }
+            int curPrime = i;
+            int n = myInt;
+            int squared = 0;
+
+            // Get squared value
+            while (curPrime > 0) {
+                squared += i;
+                curPrime -= 1;
             }
+
+            // Determine divisibility
+            while (n >= 0) {
+                if (n == 0) {
+                    return false;
+                }
+
+                n -= squared;
+            }
+
         }
         
         return true;
