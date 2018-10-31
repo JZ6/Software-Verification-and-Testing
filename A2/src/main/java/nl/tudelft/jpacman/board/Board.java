@@ -91,4 +91,10 @@ public class Board {
     public boolean withinBorders(int x, int y) {
         return x >= 0 && x < getWidth() && y >= 0 && y < getHeight();
     }
+
+    public static void main (String[] args) {
+        Square[][] s = new Square[6][6];;
+        Board b = new Board(s);
+        b.withinBorders(1, 3);
+}
 }
