@@ -55,7 +55,14 @@ public class SquareFree {
      */
     public static boolean isSquareFree(int myInt) {
     	int n = myInt;
-    	
+    	int squared;
+
+    	// Non-positive integers are not squarefree
+    	if (n <= 0)
+    	{
+    		return false;
+    	}
+    
     	// By the Fundamental theorem of arithmetic, every positive integer
     	// greater than 1 can be written as a product of prime numbers.
     	// Therefore, if there exists a square of integer m (which is smaller than n)
@@ -65,13 +72,13 @@ public class SquareFree {
     	// Start with the smallest prime which is 2
         for (int i = 2; i < n; i++)
         {
-            //See if i is a factor
+            // See if i is a factor
             if (n % i == 0)
             {
-                n = n / i;
+                squared = i * i;
                 
                 // If it divides again, it must not be squarefree
-                if (n % i == 0)
+                if (n % squared == 0)
                 {
                 	return false;
                 }

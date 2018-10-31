@@ -1,0 +1,20 @@
+target=main.java.nl.tudelft.jpacman.squareFree.SquareFree
+classpath=bin
+sourcepath=src
+
+symbolic.method= main.java.nl.tudelft.jpacman.squareFree.SquareFree.isSquareFree(sym)
+
+symbolic.min_int = -50
+symbolic.max_int = 200
+
+# listener to print information (PCs, test cases) about symbolic run
+
+listener = gov.nasa.jpf.symbc.sequences.SymbolicSequenceListener
+
+# no state matching
+
+vm.storage.class=nil
+
+# instruct jpf not to stop at first error
+
+search.multiple_errors=true
