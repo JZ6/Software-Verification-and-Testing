@@ -167,12 +167,6 @@
 				</dependencies>
 				<configuration>
 					<verbose>true</verbose>
-					<targetClasses>
-						<param>nl.tudelft.jpacman.Launcher</param>
-					</targetClasses>
-					<targetTests>
-						<param>nl.tudelft.jpacman.LauncherSmokeTest</param>
-					</targetTests>
 				</configuration>
 			</plugin>
 
