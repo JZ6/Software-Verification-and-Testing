@@ -12,10 +12,12 @@ import java.util.Scanner;
 public class SquareFree {
 
     public static void main(String[] args) {
-        return;
+        SquareFree sf = new SquareFree();
+        sf.isSquareFree(7);
     }
 
 	public static void startSquareFree () {
+        SquareFree sf = new SquareFree();
 		int input;
 		boolean quit = false;
 		Scanner scanner = new Scanner(System.in);
@@ -29,7 +31,7 @@ public class SquareFree {
 		    	input = scanner.nextInt();
 		    	
 		    	if (input > 0) {
-		    		if(isSquareFree(input)) {
+		    		if(sf.isSquareFree(input)) {
 		    			System.out.println("Yes, it is squarefree.");
 		    		}
 		    		else {
@@ -57,7 +59,7 @@ public class SquareFree {
      * @param myInt
      *            The integer n
      */
-    public static boolean isSquareFree(int myInt) {
+    public boolean isSquareFree(int myInt) {
     	int n = myInt;
     	int squared;
 
