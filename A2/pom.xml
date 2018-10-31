@@ -153,22 +153,6 @@
 
 	<build>
 		<plugins>
-		
-			<plugin>
-				<groupId>org.pitest</groupId>
-				<artifactId>pitest-maven</artifactId>
-				<version>1.4.2</version>
-				<dependencies>
-					<dependency>
-						<groupId>org.pitest</groupId>
-						<artifactId>pitest-junit5-plugin</artifactId>
-						<version>0.7</version>
-					</dependency>
-				</dependencies>
-				<configuration>
-					<verbose>true</verbose>
-				</configuration>
-			</plugin>
 
 			<plugin>
 				<groupId>org.apache.maven.plugins</groupId>
@@ -388,6 +372,30 @@
 					</execution>
 				</executions>
 			</plugin>
+
+			<plugin>
+				<groupId>org.pitest</groupId>
+				<artifactId>pitest-maven</artifactId>
+				<version>1.4.2</version>
+				<dependencies>
+					<dependency>
+						<groupId>org.pitest</groupId>
+						<artifactId>pitest-junit5-plugin</artifactId>
+						<version>0.7</version>
+					</dependency>
+				</dependencies>
+				<configuration>
+					<verbose>true</verbose>
+					<targetClasses>
+					<param>nl.tudelft.jpacman.squareFree.SquareFree</param>
+					</targetClasses>
+					<targetTests>
+					<param>nl_tudelft_jpacman_squareFree_SquareFreeTest</param>
+					</targetTests>
+					
+				</configuration>
+			</plugin>
+
 		</plugins>
 	</build>
 

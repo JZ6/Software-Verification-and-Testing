@@ -18,7 +18,7 @@ import nl.tudelft.jpacman.sprite.PacManSprites;
 import nl.tudelft.jpacman.ui.Action;
 import nl.tudelft.jpacman.ui.PacManUI;
 import nl.tudelft.jpacman.ui.PacManUiBuilder;
-import nl.tudelft.jpacman.squareFree.SquareFree;
+//import nl.tudelft.jpacman.squareFree.SquareFree;
 
 /**
  * Creates and launches the JPacMan UI.
@@ -203,11 +203,6 @@ public class Launcher {
      *             When a resource could not be read.
      */
     public static void main(String[] args) throws IOException {
-    	if (args.length == 1 && args[0].equals("-squareFree")) {
-    		SquareFree.startSquareFree();
-    	}
-    	else {
-    		new Launcher().launch();
-    	}
+    	new Launcher().launch();
     }
 }

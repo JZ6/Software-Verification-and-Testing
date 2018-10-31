@@ -16,43 +16,43 @@ public class SquareFree {
         sf.isSquareFree(7);
     }
 
-	public static void startSquareFree () {
-        SquareFree sf = new SquareFree();
-		int input;
-		boolean quit = false;
-		Scanner scanner = new Scanner(System.in);
+	// public static void startSquareFree () {
+ //        SquareFree sf = new SquareFree();
+	// 	int input;
+	// 	boolean quit = false;
+	// 	Scanner scanner = new Scanner(System.in);
 		
-		while (!quit) {
-			// Prompt for the user's name
-		    System.out.print("Enter your integer (or \"quit\" to exit): ");
+	// 	while (!quit) {
+	// 		// Prompt for the user's name
+	// 	    System.out.print("Enter your integer (or \"quit\" to exit): ");
 			
-		    // Check if the scanner's next token is an int
-		    if (scanner.hasNextInt()) {
-		    	input = scanner.nextInt();
+	// 	    // Check if the scanner's next token is an int
+	// 	    if (scanner.hasNextInt()) {
+	// 	    	input = scanner.nextInt();
 		    	
-		    	if (input > 0) {
-		    		if(sf.isSquareFree(input)) {
-		    			System.out.println("Yes, it is squarefree.");
-		    		}
-		    		else {
-		    			System.out.println("No, it is not squarefree.");
-		    		}
+	// 	    	if (input > 0) {
+	// 	    		if(sf.isSquareFree(input)) {
+	// 	    			System.out.println("Yes, it is squarefree.");
+	// 	    		}
+	// 	    		else {
+	// 	    			System.out.println("No, it is not squarefree.");
+	// 	    		}
 		    		
-		    	}
-		    	else {
-		    		System.out.println("Input integer needs to be greater than 0");
-		    	}
-		    }
-		    else if (scanner.next().equals("quit")) {
-		    	quit = true;
-		    }
-		    else {
-		    	System.out.println("INVALID INPUT");
-		    }
-		}
+	// 	    	}
+	// 	    	else {
+	// 	    		System.out.println("Input integer needs to be greater than 0");
+	// 	    	}
+	// 	    }
+	// 	    else if (scanner.next().equals("quit")) {
+	// 	    	quit = true;
+	// 	    }
+	// 	    else {
+	// 	    	System.out.println("INVALID INPUT");
+	// 	    }
+	// 	}
 
-	}
-	
+	// }
+
     /**
      * Take an integer n and return true if n is squarefree, and false otherwise
      *
