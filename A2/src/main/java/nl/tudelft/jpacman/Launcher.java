@@ -154,18 +154,7 @@ public class Launcher {
         builder.addKey(KeyEvent.VK_UP, moveTowardsDirection(Direction.NORTH))
                 .addKey(KeyEvent.VK_DOWN, moveTowardsDirection(Direction.SOUTH))
                 .addKey(KeyEvent.VK_LEFT, moveTowardsDirection(Direction.WEST))
-                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST))
-                .addKey(KeyEvent.VK_SPACE, freezeUnfreeze());	//Add freeze/unfreeze key
-    }
-
-    /**
-     * Adds freeze/unfreeze key and function
-     */
-    private Action freezeUnfreeze() {
-        return () -> {
-            assert game != null;
-            getGame().freezeUnfreeze();
-        };
+                .addKey(KeyEvent.VK_RIGHT, moveTowardsDirection(Direction.EAST));
     }
     
     private Action moveTowardsDirection(Direction direction) {
