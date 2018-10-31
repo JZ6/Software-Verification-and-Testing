@@ -11,6 +11,10 @@ import java.util.Scanner;
  */
 public class SquareFree {
 
+    static void main(String[]) {
+        return;
+    }
+
 	public static void startSquareFree () {
 		int input;
 		boolean quit = false;
