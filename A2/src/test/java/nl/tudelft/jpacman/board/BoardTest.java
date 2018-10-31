@@ -53,4 +53,46 @@ class BoardTest {
     void testSquareAt(int x, int y) {
         assertThat(board.squareAt(x, y)).isEqualTo(grid[x][y]);
     }
+
+        /**
+     * Verify invalid WithinBorders parameters using Boundary Value Testing.
+     * @param x Horizontal coordinate of relevant cell.
+     * @param y Vertical coordinate of relevant cell.
+     */
+
+    // x >= 0 && x < 2 && y >= 0 && y < 3
+    @ParameterizedTest
+    @CsvSource({
+            "-1, -1",   //Both parameters invalid.
+            "-1, 99",
+            "99, -1",
+            "99, 99",
+			
+			"2, 1",		//X & Y on Boundary
+            "1, 3",
+
+            "-1, 1",    //One parameter invalid.
+            "99, 1",
+            "1, 99",
+            "1, -1"
+    })
+    void verifyWithinBordersFalse(int x, int y) {
+        assertThat(board.withinBorders(x, y)).isEqualTo(false);
+    }
+
+     /**
+     * Verify valid WithinBorders parameters using Boundary Value Testing.
+     * @param x Horizontal coordinate of relevant cell.
+     * @param y Vertical coordinate of relevant cell.
+     */
+    @ParameterizedTest
+    @CsvSource({
+            "0, 0",
+            "1, 0",
+            "0, 1",
+            "1, 1"
+    })
+    void verifyWithinBordersTrue(int x, int y) {
+        assertThat(board.withinBorders(x, y)).isEqualTo(true);
+    }
 }
