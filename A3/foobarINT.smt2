@@ -15,6 +15,5 @@
 )
 
 (declare-const x Int)
-(assert (= (foo x) (bar x)))
+(assert (not (= (foo x) (bar x))))
 (check-sat)
-(get-model)
